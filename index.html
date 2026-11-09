@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>CPA Notas</title>
+    <meta name="theme-color" content="#0F5C4D">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+    <section id="login" class="login hidden">
+        <img src="icons/icon-192.png" alt="">
+        <h2>CPA Notas</h2>
+        <p style="color:var(--mute)">Entre para sincronizar suas anotações entre computador e celular.</p>
+        <button class="btn primary" id="gBtn">Entrar com Google</button>
+        <p style="color:var(--mute);margin:14px 0 4px">ou com e-mail e senha</p>
+        <input id="email" type="email" placeholder="E-mail" autocomplete="email">
+        <input id="pass" type="password" placeholder="Senha (mín. 6 caracteres)" autocomplete="current-password">
+        <button class="btn" id="inBtn">Entrar</button>
+        <button class="btn" id="upBtn">Criar conta</button>
+        <div class="err" id="loginErr"></div>
+    </section>
+
+    <!-- APP -->
+    <div id="app" class="hidden">
+        <header>
+            <img src="icons/icon-192.png" alt="">
+            <h1>CPA Notas</h1>
+            <span class="sync" id="sync">●</span>
+            <button class="btn ghost" id="exportBtn" title="Baixar backup">Backup</button>
+            <button class="btn ghost" id="outBtn">Sair</button>
+        </header>
+        <main>
+            <div class="tabs" id="tabs">
+                <button class="tab" data-t="todos" aria-pressed="true">Tudo</button>
+                <button class="tab" data-t="anotacao" aria-pressed="false">Anotações</button>
+                <button class="tab" data-t="resumo" aria-pressed="false">Resumos</button>
+                <button class="tab" data-t="fav" aria-pressed="false">★ Favoritos</button>
+            </div>
+            <div class="tools">
+                <input id="q" type="search" placeholder="Buscar por título, texto ou tag…">
+                <select id="fTopic">
+                    <option value="">Todos os tópicos</option>
+                </select>
+            </div>
+            <div class="grid" id="list"></div>
+            <div class="empty hidden" id="empty">Nenhuma nota ainda. Toque no <b>+</b> para criar a primeira.</div>
+        </main>
+        <button class="fab" id="newBtn" aria-label="Nova nota">+</button>
+    </div>
+
+    <!-- EDITOR -->
+    <dialog id="dlg">
+        <form class="editor" id="form" method="dialog">
+            <label>Título<input id="fTitle" required maxlength="140"
+                    placeholder="Ex.: Duration de títulos prefixados"></label>
+            <div class="row">
+                <label>Tipo<select id="fType">
+                        <option value="anotacao">Anotação</option>
+                        <option value="resumo">Resumo</option>
+                    </select></label>
+                <label>Tópico<select id="fTopicSel"></select></label>
+            </div>
+            <div class="row">
+                <label>Link do vídeo (YouTube)<input id="fUrl" type="url" placeholder="https://youtube.com/…"></label>
+                <label>Minuto do vídeo<input id="fTime" placeholder="ex.: 12:30"></label>
+            </div>
+            <label>Anotação / resumo<textarea id="fText"
+                    placeholder="Escreva o que aprendeu, fórmulas, pegadinhas de prova…"></textarea></label>
+            <label>Tags (separadas por vírgula)<input id="fTags" placeholder="renda fixa, CDB, risco"></label>
+            <div class="actions">
+                <button type="button" class="btn danger hidden" id="delBtn">Excluir</button>
+                <button type="button" class="btn" id="favBtn">☆ Favoritar</button>
+                <button type="button" class="btn" id="openBtn">Abrir vídeo</button>
+                <button type="button" class="btn" id="cancelBtn">Cancelar</button>
+                <button type="submit" class="btn primary">Salvar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script type="module" src="js/script.js"></script>
+
+</body>
+
+</html>
